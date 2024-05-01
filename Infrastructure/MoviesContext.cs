@@ -1,53 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Core;
+using Core.Models;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
-namespace Core.Models;
+namespace Infrastructure;
 
-public partial class MoviesContext : DbContext
+public partial class MoviesContext : DbContext, IMoviesContext
 {
-    public MoviesContext()
-    {
-    }
+    public MoviesContext() { }
 
-    public MoviesContext(DbContextOptions<MoviesContext> options)
-        : base(options)
-    {
-    }
+    public MoviesContext(DbContextOptions<MoviesContext> options) : base(options) { }
 
     public virtual DbSet<Country> Countries { get; set; }
-
     public virtual DbSet<Department> Departments { get; set; }
-
     public virtual DbSet<Gender> Genders { get; set; }
-
     public virtual DbSet<Genre> Genres { get; set; }
-
     public virtual DbSet<Keyword> Keywords { get; set; }
-
     public virtual DbSet<Language> Languages { get; set; }
-
     public virtual DbSet<LanguageRole> LanguageRoles { get; set; }
-
+    
     public virtual DbSet<Movie> Movies { get; set; }
-
     public virtual DbSet<MovieCast> MovieCasts { get; set; }
-
     public virtual DbSet<MovieCompany> MovieCompanies { get; set; }
-
     public virtual DbSet<MovieCrew> MovieCrews { get; set; }
-
     public virtual DbSet<MovieGenre> MovieGenres { get; set; }
-
     public virtual DbSet<MovieKeyword> MovieKeywords { get; set; }
-
     public virtual DbSet<MovieLanguage> MovieLanguages { get; set; }
-
     public virtual DbSet<Person> People { get; set; }
-
     public virtual DbSet<ProductionCompany> ProductionCompanies { get; set; }
-
     public virtual DbSet<ProductionCountry> ProductionCountries { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
