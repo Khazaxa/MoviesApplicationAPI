@@ -396,3 +396,14 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+*.idea
+
+# JetBrains Rider files
+*.rider.project.restore.info
+
+# Assembly Info files
+*.AssemlyInfo.cs
+*.AssemlyInfoInputs.cs
+
+# Assembly Reference Cache files
+*.csproj.Assemlyreference.cache
