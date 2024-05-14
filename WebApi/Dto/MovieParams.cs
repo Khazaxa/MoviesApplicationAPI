@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using Core.Validate;
 
-namespace Core.Models;
+namespace WebApi.Dto;
 
-public class Movie
+public class MovieParams
 {
-    public int MovieId { get; set; }
-
     public string? Title { get; set; }
 
     [Range(0, int.MaxValue, ErrorMessage = "Budget must be a positive number.")]
@@ -29,7 +27,7 @@ public class Movie
     public int? Runtime { get; set; }
 
     [Required]
-    [Validate.AllowedValues("Released", "InProduction", ErrorMessage = "MovieStatus must be either 'Released' or 'InProduction'.")]
+    [Core.Validate.AllowedValues("Released", "InProduction", ErrorMessage = "MovieStatus must be either 'Released' or 'InProduction'.")]
     public string? MovieStatus { get; set; }
 
     public string? Tagline { get; set; }

@@ -57,5 +57,30 @@ namespace WebApi.Controllers
 
             return movie;
         }
+        
+        [HttpPost]
+        public async Task<ActionResult<MovieParams>> CreateMovie(MovieParams movieEntity)
+        {
+            var movie = new Movie
+            {
+                Title = movieEntity.Title,
+                Budget = movieEntity.Budget,
+                Homepage = movieEntity.Homepage,
+                Overview = movieEntity.Overview,
+                Popularity = movieEntity.Popularity,
+                ReleaseDate = movieEntity.ReleaseDate,
+                Revenue = movieEntity.Revenue,
+                Runtime = movieEntity.Runtime,
+                MovieStatus = movieEntity.MovieStatus,
+                Tagline = movieEntity.Tagline,
+                VoteAverage = movieEntity.VoteAverage,
+                VoteCount = movieEntity.VoteCount
+            };
+
+            _context.Movies.Add(movie);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetMovieById), new { id = movie.MovieId }, movieEntity);
+        }
     }
 }
