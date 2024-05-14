@@ -1,6 +1,6 @@
 ﻿namespace Core.Models;
 
-public partial class Gender
+public class Gender
 {
     public int GenderId { get; set; }
 

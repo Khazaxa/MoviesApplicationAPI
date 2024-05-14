@@ -1,6 +1,6 @@
 ﻿namespace Core.Models;
 
-public partial class Department
+public class Department
 {
     public int DepartmentId { get; set; }
 

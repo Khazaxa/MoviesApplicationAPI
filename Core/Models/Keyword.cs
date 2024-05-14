@@ -1,6 +1,6 @@
 ﻿namespace Core.Models;
 
-public partial class Keyword
+public class Keyword
 {
     public int KeywordId { get; set; }
 

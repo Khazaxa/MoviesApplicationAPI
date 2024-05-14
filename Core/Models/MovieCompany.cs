@@ -1,6 +1,6 @@
 ﻿namespace Core.Models;
 
-public partial class MovieCompany
+public class MovieCompany
 {
     public int? MovieId { get; set; }
 

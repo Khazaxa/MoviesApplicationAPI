@@ -1,6 +1,6 @@
 ﻿namespace Core.Models;
 
-public partial class ProductionCompany
+public class ProductionCompany
 {
     public int CompanyId { get; set; }
 

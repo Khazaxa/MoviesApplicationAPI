@@ -1,4 +1,3 @@
-using Core;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +9,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         
-        builder.Services.AddDbContext<IMoviesContext, MoviesContext>(options =>
+        builder.Services.AddDbContext<MoviesContext>(options =>
             options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
                 new MySqlServerVersion(new Version(8, 0, 21))));
         builder.Services.AddAuthorization();

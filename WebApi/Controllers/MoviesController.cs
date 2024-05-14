@@ -1,12 +1,13 @@
 using Core;
 using Core.Models;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Controllers
 {
     [ApiController, Route("movies")]
-    public class MoviesController(IMoviesContext _context) : ControllerBase
+    public class MoviesController(MoviesContext _context) : ControllerBase
     {
         [HttpGet]
         public async Task<ActionResult<PagedResult<Movie>>> GetPagedMovies(int pageNumber = 1, int pageSize = 1)

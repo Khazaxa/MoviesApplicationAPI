@@ -1,6 +1,6 @@
 ﻿namespace Core.Models;
 
-public partial class Country
+public class Country
 {
     public int CountryId { get; set; }
 

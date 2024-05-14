@@ -1,10 +1,9 @@
-﻿using Core;
-using Core.Models;
+﻿using Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure;
 
-public partial class MoviesContext : DbContext, IMoviesContext
+public partial class MoviesContext : DbContext
 {
     public MoviesContext() { }
 

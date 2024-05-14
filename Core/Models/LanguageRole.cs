@@ -1,6 +1,6 @@
 ﻿namespace Core.Models;
 
-public partial class LanguageRole
+public class LanguageRole
 {
     public int RoleId { get; set; }
 
