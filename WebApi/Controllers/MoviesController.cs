@@ -7,10 +7,10 @@ using WebApi.Dto;
 
 namespace WebApi.Controllers
 {
-    [ApiController, Route("movies")]
+    [ApiController]
     public class MoviesController(MoviesContext _context) : ControllerBase
     {
-        [HttpGet]
+        [HttpGet, Route("movies")]
         public async Task<ActionResult<PagedResult<Movie>>> GetPagedMovies(int pageNumber = 1, int pageSize = 1)
         {
             var movies = _context.Movies.AsQueryable();
@@ -61,6 +61,39 @@ namespace WebApi.Controllers
             }
 
             return Ok(movieDtos);
+        }
+        
+        [HttpPost("movies/{id}/keywords")]
+        public async Task<IActionResult> AddKeywordToMovie(int id, [FromBody] Keyword keyword)
+        {
+            var movie = await _context.Movies.FindAsync(id);
+            if (movie == null)
+            {
+                return NotFound(new { message = $"Movie with id {id} not found." });
+            }
+
+            var existingKeyword = await _context.Keywords.FirstOrDefaultAsync(k => k.KeywordName == keyword.KeywordName);
+            if (existingKeyword == null)
+            {
+                _context.Keywords.Add(keyword);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                keyword = existingKeyword;
+            }
+
+            var movieKeyword = await _context.MovieKeywords.FirstOrDefaultAsync(mk => mk.MovieId == id && mk.KeywordId == keyword.KeywordId);
+            if (movieKeyword != null)
+            {
+                return BadRequest(new { message = "The keyword is already associated with the movie." });
+            }
+
+            movieKeyword = new MovieKeyword { MovieId = id, KeywordId = keyword.KeywordId };
+            _context.MovieKeywords.Add(movieKeyword);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(AddKeywordToMovie), new { id = movie.MovieId, keywordId = keyword.KeywordId }, movieKeyword);
         }
     }
 }
